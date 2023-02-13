@@ -11,14 +11,15 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class BookStore_Page extends Base_Page {
+
 //-----------------------------------------------LOCATORS---------------------------------------------------------------
- Alert alert=Driver.getDriver().switchTo().alert();
     @FindBy(xpath = "//input[@id=\"searchBox\"]")
     private WebElement inputSearchBox;
     @FindBy(xpath = "//span[@id=\"basic-addon2\"]")
     private  WebElement searchBoxButton;
     @FindBy(xpath = "//a[.=\"Git Pocket Guide\"]")
     private WebElement searchingBook;
+
     @FindBy(xpath = "(//div[@role=\"gridcell\"])[3]")
     private WebElement searchingAuthor;
     @FindBy(xpath="//div[@class=\"rt-tbody\"]//div//div//div//div")
@@ -26,10 +27,6 @@ public class BookStore_Page extends Base_Page {
     private WebElement searchingLetters;
     @FindBy(xpath = "//div[.=\"No rows found\"]")
     private WebElement noRowsFound;
-    @FindBy(xpath = "//button[.=\"Add To Your Collection\"]")
-    private WebElement addToYourCollectionButton;
-    @FindBy(xpath = "(//label[@id=\"userName-value\"])[9]")
-    private WebElement linkInBookPage;
 
 //-----------------------------------------------METHODS----------------------------------------------------------------
     public void enterBookNameInSearchBox(){
@@ -44,7 +41,7 @@ public class BookStore_Page extends Base_Page {
         Assert.assertEquals(expectedBook,actualBook);
     }
     public void enterAuthorNameInSearchBox(){
-        searchingAuthor.sendKeys("Richard E. Silverman");
+        inputSearchBox.sendKeys("Richard E. Silverman");
     }
     public void verifySearchingAuthor(){
         String expectedAuthor="Richard E. Silverman";
@@ -67,19 +64,7 @@ public class BookStore_Page extends Base_Page {
     public void clickOnSearchingBook(){
         searchingBook.click();
     }
-    public void clickAddToYourCollectionButton(){
-        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-        BrowserUtils.sleep(3);
-        js.executeScript("arguments[0].scrollIntoView(true)",addToYourCollectionButton);
-        addToYourCollectionButton.click();
-    }
-    public void verifyAddToYourCollectionButton(){
-        Assert.assertTrue(addToYourCollectionButton.isEnabled());
-    }
-    public void verifyBookAddedToYourCollectionMessage(){
-        alert.accept();
-        //ALERTTEKI MESAJI NASIL DOGRULARIZ
-    }
+
     public void verifyBooksWithSearchedLetters(String letters){
         for (WebElement e:bookNamesWithSearchingLetters) {
             if(e.getText().contains(letters)){
@@ -90,11 +75,7 @@ public class BookStore_Page extends Base_Page {
 
         }
     }
-    public void verifyLinkInBookPage(){
-        linkInBookPage.click();
-        BrowserUtils.sleep(3);
-        Assert.assertTrue(linkInBookPage.isDisplayed());
-    }
+
 
 
 

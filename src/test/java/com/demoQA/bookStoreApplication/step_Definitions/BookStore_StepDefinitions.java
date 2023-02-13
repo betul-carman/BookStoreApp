@@ -9,6 +9,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.Alert;
 
 public class BookStore_StepDefinitions {
     Login_Page loginPage=new Login_Page();
@@ -22,7 +23,7 @@ public class BookStore_StepDefinitions {
         loginPage.enterInputPassword(ConfigurationReader.getProperty("password"));
         loginPage.clickLoginButton();
     }
-//-------------------------------------------SCENARIO-1--------------------------------------------------------------
+    //-------------------------------------------SCENARIO-1--------------------------------------------------------------
     @When("the user types a book name in the search box")
     public void theUserTypesABookNameInTheSearchBox() {
         bookStorePage.enterBookNameInSearchBox();
@@ -70,14 +71,10 @@ public class BookStore_StepDefinitions {
 
     @Then("the user adds the searched book to its own collection by clicking on Add collection button")
     public void theUserAddsTheSearchedBookToItsOwnCollectionByClickingOnAddCollectionButton() {
-        bookStorePage.clickAddToYourCollectionButton();
-       bookStorePage.verifyAddToYourCollectionButton();
+        bookPage.clickAddToYourCollectionButton();
+       bookPage.verifyAddToYourCollectionButton();
     }
-//-------------------------------------------SCENARIO-6--------------------------------------------------------------
-    @Then("the user sees {string} as a message by clicking on Add collection button")
-    public void theUserSeesAsAMessageByClickingOnAddCollectionButton(String arg0) {
-      }
-    //-------------------------------------------SCENARIO-7--------------------------------------------------------------
+   //-------------------------------------------SCENARIO-6--------------------------------------------------------------
     @Given("the user is on the book page")
     public void theUserIsOnTheBookPage() {
         bookStorePage.enterBookNameInSearchBox();
@@ -85,7 +82,19 @@ public class BookStore_StepDefinitions {
     }
     @Then("the user clicks on the book link in the book page")
     public void theUserClicksOnTheBookLinkInTheBookPage() {
-     bookStorePage.verifyLinkInBookPage();
+     bookPage.verifyLinkInBookPage();
     }
-    //-------------------------------------------SCENARIO-8------------------------------------------------------------
+    //-------------------------------------------SCENARIO-7------------------------------------------------------
+    @Then("the user goes back the book store by clicking Back to book store button")
+    public void theUserGoesBackTheBookStoreByClickingBackToBookStoreButton() {
+        bookPage.clickBackToBookStoreButton();
+        bookPage.verifyIsEnabledBackToBookStoreButton();
+    }
+//-------------------------------------------SCENARIO-8-----------------------------------------------------
+   /* LOGOUT ICIN YAPABILIRSIN
+   @Then("the user navigates to the login page by clicking the login button")
+   public void theUserNavigatesToTheLoginPageByClickingTheLoginButton() {
+        bookStorePage.clickLoginButton();
+        bookStorePage.verifyNavigateToLoginPage();
+    }*/
 }
