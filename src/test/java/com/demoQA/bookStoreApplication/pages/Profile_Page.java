@@ -28,7 +28,6 @@ public class Profile_Page extends Base_Page{
     private WebElement deletedSecondBook;
     @FindBy(xpath = "//button[.=\"Delete Account\"]")
     private WebElement deleteAccountButton;
-
 //-----------------------------------------------METHODS--------------------------------------------------------------
     public void clickLogOutButton(){
         logOutButton.click();

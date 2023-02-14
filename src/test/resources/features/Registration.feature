@@ -2,7 +2,7 @@ Feature: As a user, I should be able to register
   Background:
     Given the user is on register page
 #-----------------------------------------------SCENARIO-1------------------------------------------------------
-
+  @register
   Scenario Outline: If the user tries to register an existing credentials then an error message should get displayed
     When the user try to register with the existing credentials "<First Name>", "<Last Name>", "<Username>", "<Password>"
     Then an error message "User exists!" gets displayed
@@ -35,18 +35,19 @@ Feature: As a user, I should be able to register
   Scenario: The user should always be able to go back to login page before registration
     When user clicks Back to login button
     Then user navigates to the login page
-#-----------------------------------------------SCENARIO-6------------------------------------------------------
-  Scenario Outline: The user should be able to create an account
-   # When the user enters the valid credentials "<First Name>", "<Last Name>", "<Username>", "<Password>" in required fields
-   # Then the user creates an account
-    Examples:
-      | First Name | Last Name | Username | Password |
-      |   Bon      | Jovi      | Bonjovi  | 1234Abc.#|
+
 #-----------------------------------------------SCENARIO-5-----------------------------------------------------
-  @register
+
   Scenario Outline: The user can not create an account before clicking "I am not robot" button
     When the user enters the valid credentials "<First Name>", "<Last Name>", "<Username>", "<Password>" in required fields
     Then the user can not register before clicking button(I am not robot) and sees an error message "Please verify reCaptcha to register!"
+    Examples:
+      | First Name | Last Name | Username | Password |
+      |   Bon      | Jovi      | Bonjovi  | 1234Abc.#|
+#-----------------------------------------------SCENARIO-6------------------------------------------------------
+  Scenario Outline: The user should be able to create an account
+    When the user enters the valid credentials "<First Name>", "<Last Name>", "<Username>", "<Password>" in required fields
+    Then the user creates an account
     Examples:
       | First Name | Last Name | Username | Password |
       |   Bon      | Jovi      | Bonjovi  | 1234Abc.#|

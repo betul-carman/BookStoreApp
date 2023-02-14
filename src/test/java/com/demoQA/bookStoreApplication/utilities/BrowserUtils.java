@@ -13,9 +13,7 @@ public class BrowserUtils {
 
         }
     }
-
     public static boolean assertWebElementNotPresent(WebElement webElement){
-
         try {
             Driver.getDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             webElement.getText();

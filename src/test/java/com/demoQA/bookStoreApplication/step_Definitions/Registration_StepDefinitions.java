@@ -82,5 +82,9 @@ public class Registration_StepDefinitions {
         registrationPage.verifyMessageForIamNotARobotButton(arg0);
     }
     //-----------------------------------------------SCENARIO-6-----------------------------------------------
-
+    @Then("the user creates an account")
+    public void theUserCreatesAnAccount() {
+       registrationPage.clickIamNotRobotButton();
+       registrationPage.clickRegisterButton();
+    }
 }
