@@ -9,7 +9,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.Alert;
+import org.junit.Assert;
 
 public class BookStore_StepDefinitions {
     Login_Page loginPage=new Login_Page();
@@ -23,7 +23,7 @@ public class BookStore_StepDefinitions {
         loginPage.enterInputPassword(ConfigurationReader.getProperty("password"));
         loginPage.clickLoginButton();
     }
-    //-------------------------------------------SCENARIO-1--------------------------------------------------------------
+//-------------------------------------------SCENARIO-1--------------------------------------------------------------
     @When("the user types a book name in the search box")
     public void theUserTypesABookNameInTheSearchBox() {
         bookStorePage.enterBookNameInSearchBox();
@@ -36,25 +36,25 @@ public class BookStore_StepDefinitions {
     public void theUserFindsTheSearchedBook() {
        bookStorePage.verifySearchingBook();
     }
-    //--------------------------------------------SCENARIO-2-------------------------------------------------------------
+//--------------------------------------------SCENARIO-2-------------------------------------------------------------
     @When("the user types an author name in the search box")
     public void theUserTypesAnAuthorNameInTheSearchBox() {
         bookStorePage.enterAuthorNameInSearchBox();
     }
     @Then("the user finds the searched author")
     public void theUserFindsTheSearchedAuthor() {
-        bookStorePage.verifySearchingAuthor();
+        bookStorePage.verifySearchingAuthorIsVisibleInThePage();
     }
-    //--------------------------------------------SCENARIO-3--------------------------------------------------------------
-    @When("the user types some letters of a book in the search box")
-    public void theUserTypesSomeLettersOfABookInTheSearchBox() {
-        bookStorePage.enterSomeLettersOfBook();
+//--------------------------------------------SCENARIO-3--------------------------------------------------------------
+    @When("the user types some letters of a book {string} in the search box")
+    public void theUserTypesSomeLettersOfABookInTheSearchBox(String letters) {
+        bookStorePage.enterSomeLettersOfBook(letters);
     }
-    @Then("the user sees the suggestions which contain written letters")
-    public void theUserSeesTheSuggestionsWhichContainWrittenLetters() {
-        bookStorePage.verifyBooksWithSearchedLetters("abc");
+    @Then("the user sees the suggestions which contain written letters {string}")
+    public void theUserSeesTheSuggestionsWhichContainWrittenLetters(String letters) {
+        bookStorePage.verifyAutoSuggestion(letters);
     }
-    //-------------------------------------------SCENARIO-4--------------------------------------------------------------
+//-------------------------------------------SCENARIO-4--------------------------------------------------------------
    @When("the user types a book name which is not included in the repository")
    public void theUserTypesABookNameWhichIsNotIncludedInTheRepository() {
         bookStorePage.typeBookNameNotInRepository();
@@ -63,7 +63,7 @@ public class BookStore_StepDefinitions {
     public void theUserSeesMessage(String arg0) {
         bookStorePage.verifyNoRowsFoundMessage(arg0);
     }
-    //-------------------------------------------SCENARIO-5--------------------------------------------------------------
+//-------------------------------------------SCENARIO-5--------------------------------------------------------------
    @And("the user clicks on the searched book")
    public void theUserClicksOnTheSearchedBook() {
      bookStorePage.clickOnSearchingBook();
@@ -74,7 +74,7 @@ public class BookStore_StepDefinitions {
         bookPage.clickAddToYourCollectionButton();
        bookPage.verifyAddToYourCollectionButton();
     }
-   //-------------------------------------------SCENARIO-6--------------------------------------------------------------
+//-------------------------------------------SCENARIO-6--------------------------------------------------------------
     @Given("the user is on the book page")
     public void theUserIsOnTheBookPage() {
         bookStorePage.enterBookNameInSearchBox();
@@ -84,17 +84,10 @@ public class BookStore_StepDefinitions {
     public void theUserClicksOnTheBookLinkInTheBookPage() {
      bookPage.verifyLinkInBookPage();
     }
-    //-------------------------------------------SCENARIO-7------------------------------------------------------
+//-------------------------------------------SCENARIO-7------------------------------------------------------
     @Then("the user goes back the book store by clicking Back to book store button")
     public void theUserGoesBackTheBookStoreByClickingBackToBookStoreButton() {
         bookPage.clickBackToBookStoreButton();
         bookPage.verifyIsEnabledBackToBookStoreButton();
     }
-//-------------------------------------------SCENARIO-8-----------------------------------------------------
-   /* LOGOUT ICIN YAPABILIRSIN
-   @Then("the user navigates to the login page by clicking the login button")
-   public void theUserNavigatesToTheLoginPageByClickingTheLoginButton() {
-        bookStorePage.clickLoginButton();
-        bookStorePage.verifyNavigateToLoginPage();
-    }*/
 }

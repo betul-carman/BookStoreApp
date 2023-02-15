@@ -1,13 +1,9 @@
 package com.demoQA.bookStoreApplication.pages;
 
-import com.demoQA.bookStoreApplication.utilities.BrowserUtils;
 import com.demoQA.bookStoreApplication.utilities.Driver;
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.List;
 
 public class BookStore_Page extends Base_Page {
@@ -19,14 +15,14 @@ public class BookStore_Page extends Base_Page {
     private  WebElement searchBoxButton;
     @FindBy(xpath = "//a[.=\"Git Pocket Guide\"]")
     private WebElement searchingBook;
-
     @FindBy(xpath = "(//div[@role=\"gridcell\"])[3]")
     private WebElement searchingAuthor;
     @FindBy(xpath="//div[@class=\"rt-tbody\"]//div//div//div//div")
-    private List<WebElement> bookNamesWithSearchingLetters;
-    private WebElement searchingLetters;
+    private List<WebElement> allBooksInTheBookPage;
     @FindBy(xpath = "//div[.=\"No rows found\"]")
     private WebElement noRowsFound;
+    @FindBy(xpath = "//button[.=\"Log out\"]")
+    private WebElement logOutButton;
 
 //-----------------------------------------------METHODS----------------------------------------------------------------
     public void enterBookNameInSearchBox(){
@@ -43,16 +39,13 @@ public class BookStore_Page extends Base_Page {
     public void enterAuthorNameInSearchBox(){
         inputSearchBox.sendKeys("Richard E. Silverman");
     }
-    public void verifySearchingAuthor(){
+    public void verifySearchingAuthorIsVisibleInThePage(){
         String expectedAuthor="Richard E. Silverman";
         String actualAuthor=searchingAuthor.getText();
         Assert.assertEquals(expectedAuthor,actualAuthor);
     }
-    public void enterSomeLettersOfBook(){
-        inputSearchBox.sendKeys("abc");
-    }
-    public void verifyAutoSuggestion(){
-
+    public void enterSomeLettersOfBook(String letters){
+        inputSearchBox.sendKeys(letters);
     }
     public void typeBookNameNotInRepository(){
         inputSearchBox.sendKeys("Crime and Punishment");
@@ -64,16 +57,17 @@ public class BookStore_Page extends Base_Page {
     public void clickOnSearchingBook(){
         searchingBook.click();
     }
-
-    public void verifyBooksWithSearchedLetters(String letters){
-        for (WebElement e:bookNamesWithSearchingLetters) {
-            if(e.getText().contains(letters)){
-                System.out.println("e.getText()");
-                Assert.assertTrue(true);
-
-            }
-
-        }
+    public void verifyAutoSuggestion(String letters){
+        System.out.println( allBooksInTheBookPage.get(0).getText());
+        Assert.assertTrue(allBooksInTheBookPage.get(0).getText().contains(letters));
+    }
+    public void clickLogOutButton(){
+        logOutButton.click();
+    }
+    public void verifyLoggedOut(){
+        String expectedUrl="https://demoqa.com/login";
+        String actualURL=Driver.getDriver().getCurrentUrl();
+        Assert.assertEquals(expectedUrl,actualURL);
     }
 
 

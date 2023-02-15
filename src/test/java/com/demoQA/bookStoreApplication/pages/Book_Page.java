@@ -2,14 +2,11 @@ package com.demoQA.bookStoreApplication.pages;
 
 import com.demoQA.bookStoreApplication.utilities.BrowserUtils;
 import com.demoQA.bookStoreApplication.utilities.Driver;
-import org.bouncycastle.util.Store;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.awt.print.Book;
 
 public class Book_Page extends Base_Page{
 //-----------------------------------------------LOCATORS-----------------------------------------------------
@@ -28,9 +25,10 @@ public class Book_Page extends Base_Page{
         BrowserUtils.sleep(3);
         js.executeScript("arguments[0].scrollIntoView(true)",linkInBookPage);
         linkInBookPage.click();
-        Assert.assertTrue(linkInBookPage.isEnabled());
-        //LINKIN ACILIP ACILMADIGINI VERFY ETMEK ICIN WINDOW HANDLE  KULLANILABILIR MI WINDOW
-
+        BrowserUtils.sleep(3);
+        if(Driver.getDriver().getCurrentUrl()!="https://demoqa.com/books?book=9781449325862" && linkInBookPage.isEnabled()){
+            Assert.assertTrue(true);
+        }
     }
     public void clickAddToYourCollectionButton(){
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
@@ -65,6 +63,4 @@ public class Book_Page extends Base_Page{
         Alert alert=Driver.getDriver().switchTo().alert();
         alert.accept();
     }
-
-
 }

@@ -1,15 +1,12 @@
 package com.demoQA.bookStoreApplication.step_Definitions;
 
 import com.demoQA.bookStoreApplication.pages.Login_Page;
-import com.demoQA.bookStoreApplication.utilities.BrowserUtils;
 import com.demoQA.bookStoreApplication.utilities.ConfigurationReader;
 import com.demoQA.bookStoreApplication.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 
 public class Login_StepDefinitions {
@@ -20,7 +17,7 @@ public class Login_StepDefinitions {
         Driver.getDriver().get(ConfigurationReader.getProperty("bookStoreUrl"));
         loginPage.clickLoginButtonInHomepage();
     }
-    //------------------------------------------------SCENARIO-1-----------------------------------------------
+//------------------------------------------------SCENARIO-1-----------------------------------------------
     @When("the user enters valid {string} and {string}")
     public void theUserEntersValidAnd(String arg0, String arg1) {
         loginPage.enterInputUsername(arg0);
@@ -35,12 +32,12 @@ public class Login_StepDefinitions {
         loginPage.verifyLoginFunctionality();
         loginPage.verifyTitle();
     }
-    //------------------------------------------------SCENARIO-2--------------------------------------------------
+//------------------------------------------------SCENARIO-2--------------------------------------------------
     @And("the user hits the enter key of the keyboard")
     public void theUserHitsTheEnterKeyOfTheKeyboard() {
         loginPage.hitEnterButtonOfKeyboard();
     }
-    //------------------------------------------------SCENARIO-3-----------------------------------------------
+//------------------------------------------------SCENARIO-3-----------------------------------------------
     @When("the user enters invalid {string} or and {string}")
     public void theUserEntersInvalidOrAnd(String arg0, String arg1) {
         loginPage.enterInputUsername(arg0);
@@ -49,7 +46,7 @@ public class Login_StepDefinitions {
     public void theUserSeesErrorMessage(String arg0) {
         loginPage.verifyErrorMessage(arg0);
     }
-    //------------------------------------------------SCENARIO-4-----------------------------------------------
+//------------------------------------------------SCENARIO-4-----------------------------------------------
     @When("the user enters {string} and {string}")
     public void theUserEntersAnd(String arg0, String arg1) {
         loginPage.enterInputUsername(arg0);

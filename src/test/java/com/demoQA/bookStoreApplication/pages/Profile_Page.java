@@ -28,6 +28,8 @@ public class Profile_Page extends Base_Page{
     private WebElement deletedSecondBook;
     @FindBy(xpath = "//button[.=\"Delete Account\"]")
     private WebElement deleteAccountButton;
+    @FindBy(xpath = "//div[.=\"Do you want to delete your account?\"]")
+    private WebElement messageForDeletingAccount;
 //-----------------------------------------------METHODS--------------------------------------------------------------
     public void clickLogOutButton(){
         logOutButton.click();
@@ -37,7 +39,7 @@ public class Profile_Page extends Base_Page{
         String actualResult=Driver.getDriver().getCurrentUrl();
         Assert.assertEquals(expectedURL,actualResult);
     }
-    public void clickDeleteButton(){
+    public void clickAccountDeleteButton(){
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         BrowserUtils.sleep(3);
         js.executeScript("arguments[0].scrollIntoView(true)",deleteAccountButton);
@@ -80,6 +82,9 @@ public class Profile_Page extends Base_Page{
     }
     public void verifyDeleteAllBooksButton(){
         BrowserUtils.assertWebElementNotPresent(deletedSecondBook);
-
+    }
+    public void verifyMessageForDeletingAccount(String expectedMessage){
+        String actualMessage=messageForDeletingAccount.getText();
+        Assert.assertEquals(expectedMessage,actualMessage);
     }
 }

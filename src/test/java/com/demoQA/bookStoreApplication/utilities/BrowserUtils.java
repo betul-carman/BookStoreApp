@@ -22,4 +22,5 @@ public class BrowserUtils {
             return true;
         }
     }
+
 }

@@ -1,9 +1,9 @@
-@wip
+@login
 Feature: As a user, I should be able to login so that I can access the main app features.
   Background:
     Given the user is on Login page
 #------------------------------------------------SCENARIO-1-----------------------------------------------------
-  Scenario Outline: User should be able to login with valid credentials and launch to the homepage.
+  Scenario Outline: The user should be able to login with valid credentials and launch to the homepage.
     When the user enters valid "<username>" and "<password>"
     And the user clicks the login button
     Then the user is on the homepage

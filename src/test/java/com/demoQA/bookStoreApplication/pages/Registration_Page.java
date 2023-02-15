@@ -2,19 +2,14 @@ package com.demoQA.bookStoreApplication.pages;
 
 import com.demoQA.bookStoreApplication.utilities.BrowserUtils;
 import com.demoQA.bookStoreApplication.utilities.Driver;
-import net.bytebuddy.pool.TypePool;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Registration_Page extends Base_Page{
-    Actions action=new Actions(Driver.getDriver());
+
 //-----------------------------------------------LOCATORS-------------------------------------------------------
 @FindBy(xpath = "//*[@id=\"firstname\"]")
     private WebElement firstNameInputBox;
@@ -43,9 +38,9 @@ public void hitEnterButtonOfKeyboard(){
     passwordInputBox.sendKeys(Keys.ENTER);
 }
     public void clickBackTologinButton(){
-        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-        BrowserUtils.sleep(3);
-        js.executeScript("arguments[0].scrollIntoView(true)", backToLoginButton);
+    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+    BrowserUtils.sleep(3);
+    js.executeScript("arguments[0].scrollIntoView(true)", backToLoginButton);
     backToLoginButton.click();
     }
     public void verifyBackTologinButton(){
@@ -66,16 +61,9 @@ public void hitEnterButtonOfKeyboard(){
         passwordInputBox.sendKeys(password);
     }
     public void clickIamNotRobotButton(){
-       //JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-        //BrowserUtils.sleep(3);
-        //js.executeScript("window.scrollBy(0,-750)");
-        //WebDriverWait wait=new WebDriverWait(Driver.getDriver(), 5);
-        //wait.until(ExpectedConditions.visibilityOf(IamNotArobotButton));
-        //Actions action=new Actions(Driver.getDriver());
-        //action.moveToElement(IamNotARobotButton).build().perform();
-        Driver.getDriver().switchTo().frame(iframe);
-        IamNotARobotButton.click();
-        Driver.getDriver().switchTo().parentFrame();
+    Driver.getDriver().switchTo().frame(iframe);
+    IamNotARobotButton.click();
+    Driver.getDriver().switchTo().parentFrame();
     }
     public void clickRegisterButton(){
     BrowserUtils.sleep(3);
@@ -83,7 +71,7 @@ public void hitEnterButtonOfKeyboard(){
     }
     public void verifyMessageUserExist(String expectedMessage){
     String actualMessage=messageUserExists.getText();
-        Assert.assertEquals(expectedMessage,actualMessage);
+    Assert.assertEquals(expectedMessage,actualMessage);
     }
     public void verifyRegistrationIsNotCompleted(){
     String expectedURL="https://demoqa.com/register";
@@ -97,7 +85,5 @@ public void hitEnterButtonOfKeyboard(){
     public void verifyMessageForIamNotARobotButton(String expectedMessage){
     String actualMessage=messageForIamNotARobotButton.getText();
     Assert.assertEquals(expectedMessage,actualMessage);
-
     }
-
 }

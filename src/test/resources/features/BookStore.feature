@@ -1,29 +1,26 @@
-
+@book
 Feature:The user should be able to use the functions on Book Store.
 Background:
   Given the user is on the Book Store Page
 #------------------------------------------------SCENARIO-1-----------------------------------------------------
-Scenario: Verify that the user should be able to search a book in the search box
+  Scenario: Verify that the user should be able to search a book in the search box
   When the user types a book name in the search box
   And the user clicks the search button
   Then the user finds the searched book
   #------------------------------------------------SCENARIO-2-----------------------------------------------------
-  @book
   Scenario: Verify that the user should be able to search an author name in the search box
     When the user types an author name in the search box
     And the user clicks the search button
     Then the user finds the searched author
-#------------------------------------------------SCENARIO-3-???----------------------------------------------------
-
+#------------------------------------------------SCENARIO-3-----------------------------------------------------
   Scenario: Verify that the auto-suggestion works in the search box
-    When the user types some letters of a book in the search box
-    Then the user sees the suggestions which contain written letters
+    When the user types some letters of a book "ing" in the search box
+    Then the user sees the suggestions which contain written letters "ing"
 #------------------------------------------------SCENARIO-4-----------------------------------------------------
   Scenario: Verify that user should be able to see "No rows found" message when typing a book name which is not included in the repository
     When the user types a book name which is not included in the repository
     Then the user sees "No rows found" message
 #------------------------------------------------SCENARIO-5-----------------------------------------------------
-
   Scenario: Verify that the user should be able to add a book to its own collection
     When the user types a book name in the search box
     And the user clicks on the searched book
