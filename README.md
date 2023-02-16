@@ -9,5 +9,5 @@ The second part is java package where all coding process and testing process are
 3) In the step definitions package, one step definition class is created for each feature file. All methods in page class are used here. In Hooks class, some cucumber annotations are implemented such as Before, After. 
 4) The framework is triggered from “CukesRunner” class in “runners” package.
 
-     
-The test results are attached here. There are 5 feature files, 25 scenarios and 108 steps in total.  
+
+The test results are attached in “screenshotsOfTestExecution” package. There are 5 feature files, 25 scenarios and 108 steps in total. In “Registration.feature” file, 1. 3. and 6. test scenarios are not suitable for the automation with Selenium/Java because of the captcha with pictures. These scenarios need to be tested manually. So those 3 scenarios failed due to this reason.   
